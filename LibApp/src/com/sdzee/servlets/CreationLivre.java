@@ -1,21 +1,24 @@
 package com.sdzee.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sdzee.beans.Auteur;
-import com.sdzee.dao.AuteurDao;
-import com.sdzee.forms.CreationAuteurForm;
+import com.sdzee.beans.Livre;
+import com.sdzee.dao.LivreDao;
+import com.sdzee.forms.CreationLivreForm;
 
-//@WebServlet("/CreationAuteur")
-public class CreationAuteur extends HttpServlet {
-	public static final String ATT_AUTEUR = "auteur";
+
+
+public class CreationLivre extends HttpServlet {
+	
+	public static final String ATT_AUTEUR = "livre";
 	public static final String ATT_FORM = "form";
-	public static final String VUE_SUCCES = "/WEB-INF/AfficherAuteur.jsp";
-	public static final String VUE_FORM = "/WEB-INF/CreationAuteur.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/AfficherLivre.jsp";
+	public static final String VUE_FORM = "/WEB-INF/CreationLivre.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,38 +28,35 @@ public class CreationAuteur extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
-		CreationAuteurForm form = new CreationAuteurForm();
+		CreationLivreForm form = new CreationLivreForm();
 
 		/*
 		 * Appel au traitement et à la validation de la requête, et récupération du bean
 		 * en résultant
 		 */
-		// Auteur autreur_buff= new Auteur();
-		// autreur_buff.setDateNaissance(request.getParameter("dateNaissance"));
-
-		Auteur autreur = form.creerAuteur(request);
+		Livre livre = form.creerLivre(request);
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);
 
 		if (form.getErreurs().isEmpty()) {
 			request.setAttribute(ATT_AUTEUR, null);
 			int insert_done = 0;
-			AuteurDao auteurdao = new AuteurDao();
-			// ajoute auteurr a db
-			insert_done = auteurdao.ajouter_auteur_db(autreur);
+			LivreDao livredao = new LivreDao();
+			// ajoute livre a db
+			insert_done = livredao.ajouter_livre_db(livre);
 			/* Si aucune erreur, alors affichage de la fiche récapitulative */
 			if (insert_done == 1) {
 				this.getServletContext().getRequestDispatcher(VUE_FORM).forward(request, response);
 			} else {
-				form.setResultat("Échec de la création du client db");
-				request.setAttribute(ATT_AUTEUR, autreur);
+				form.setResultat("Échec de la création du livre db");
+				request.setAttribute(ATT_AUTEUR, livre);
 				request.setAttribute(ATT_FORM, form);
 				this.getServletContext().getRequestDispatcher(VUE_FORM).forward(request, response);
 			}
 
 		} else {
 			/* Sinon, ré-affichage du formulaire de création avec les erreurs */
-			request.setAttribute(ATT_AUTEUR, autreur);
+			request.setAttribute(ATT_AUTEUR, livre);
 			this.getServletContext().getRequestDispatcher(VUE_FORM).forward(request, response);
 
 		}

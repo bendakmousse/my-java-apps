@@ -12,6 +12,7 @@ import com.sdzee.beans.Livre;
 
 public class CreationLivreForm {
     private static final String CHAMP_ISSN     = "issnLivre";
+    private static final String CHAMP_ID_AUTEUR= "idAutereLivre";
     private static final String CHAMP_TITRE    = "titreLivre";
     private static final String CHAMP_RESUME   = "resumeLivre";
     private static final String CHAMP_NB_PAGES = "nbPagesLivre";
@@ -28,8 +29,13 @@ public class CreationLivreForm {
         return resultat;
     }
 
+    public void setResultat(String res) {
+        resultat=res;
+    }
+    
     public Livre creerLivre( HttpServletRequest request ) {
         String issn = getValeurChamp( request, CHAMP_ISSN );
+        String idauteur = getValeurChamp( request, CHAMP_ID_AUTEUR );
         String titre = getValeurChamp( request, CHAMP_TITRE );
         String resume = getValeurChamp( request, CHAMP_RESUME );
         String nbPages = getValeurChamp( request, CHAMP_NB_PAGES );
@@ -44,6 +50,14 @@ public class CreationLivreForm {
         }
         livre.setIssn( issn );
 
+        
+        try {
+        	validationIDauteur( idauteur );
+        } catch ( Exception e ) {
+            setErreur( CHAMP_ID_AUTEUR, e.getMessage() );
+        }
+        livre.setID_auteur(idauteur);
+        
         try {
             validationTitre( titre );
         } catch ( Exception e ) {
@@ -75,9 +89,9 @@ public class CreationLivreForm {
         livre.setDomaine( domaine );
 
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de la création du client.";
+            resultat = "Succès de la création du livre.";
         } else {
-            resultat = "Échec de la création du client.";
+            resultat = "Échec de la création du livre.";
         }
 
         return livre;
@@ -93,6 +107,18 @@ public class CreationLivreForm {
         }
     }
 
+    private void validationIDauteur( String idAuteur ) throws Exception {
+        if ( idAuteur != null ) {
+            if ( !idAuteur.matches( "^\\d+$" ) ) {
+                throw new Exception( "Le ID de auteur doit uniquement contenir des chiffres." );
+            } else if ( idAuteur.length() < 4 ) {
+                throw new Exception( "Le ID de auteur doit contenir 10 chiffres." );
+            }
+        } else {
+            throw new Exception( "Merci d'entrer un ID de auteur." );
+        }
+    }
+    
     private void validationTitre( String titre ) throws Exception {
         if ( titre != null && titre.length() < 8 ) {
             throw new Exception( "Le prénom d'utilisateur doit contenir au moins 2 caractères." );
@@ -104,7 +130,7 @@ public class CreationLivreForm {
         if ( resume != null ) {
             int countOfTokens = new StringTokenizer( resume ).countTokens();
 
-            if ( countOfTokens < 10 ) {
+            if ( countOfTokens <5 ) {
                 throw new Exception( "le resume doit contenir au moins 5 mot ." );
             }
         } else {

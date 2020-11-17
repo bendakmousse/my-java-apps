@@ -1,5 +1,6 @@
 package com.sdzee.beans;
 
+import java.sql.Date;
 
 public class Auteur {
     /* Propriétés du bean */

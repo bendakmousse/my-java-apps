@@ -24,6 +24,10 @@ public class CreationAuteurForm {
     public String getResultat() {
         return resultat;
     }
+    
+    public void setResultat(String res) {
+        resultat=res;
+    }
 
     public Auteur creerAuteur( HttpServletRequest request ) {
         String num = getValeurChamp( request, CHAMP_NUM );
@@ -62,27 +66,30 @@ public class CreationAuteurForm {
         auteur.setDateNaissance( dateNaissance );
 
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de la création du client.";
+            resultat = "Succès de la création du auteur.";
         } else {
-            resultat = "Échec de la création du client.";
+            resultat = "Échec de la création du auteur.";
         }
 
         return auteur;
     }
 
+  
+
     private void validationNom( String nom ) throws Exception {
         if ( nom != null ) {
+        	
             if ( nom.length() < 2 ) {
-                throw new Exception( "Le nom d'utilisateur doit contenir au moins 2 caractères." );
+                throw new Exception( "Le nom d'auteur doit contenir au moins 2 caractères." );
             }
         } else {
-            throw new Exception( "Merci d'entrer un nom d'utilisateur." );
+            throw new Exception( "Merci d'entrer un nom d'auteur ." );
         }
     }
 
     private void validationPrenom( String prenom ) throws Exception {
-        if ( prenom != null && prenom.length() < 5 ) {
-            throw new Exception( "Le prénom d'utilisateur doit contenir au moins 2 caractères." );
+        if ( prenom != null && prenom.length() < 2 ) {
+            throw new Exception( "Le prénom d'auteur  doit contenir au moins 2 caractères." );
         }
     }
 
@@ -90,10 +97,10 @@ public class CreationAuteurForm {
     private void validationDateNaissance( String dateNaissnace ) throws Exception {
         if ( dateNaissnace != null ) {
             if ( dateNaissnace.length() < 10 ) {
-                throw new Exception( "L'adresse de livraison doit contenir au moins 10 caractères." );
+                throw new Exception( "dateNaissnace de livraison doit contenir au moins 10 caractères." );
             }
         } else {
-            throw new Exception( "Merci d'entrer une adresse de livraison." );
+            throw new Exception( "Merci d'entrer une dateNaissnace  d'auteur." );
         }
     }
 
