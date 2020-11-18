@@ -11,13 +11,10 @@ import com.sdzee.beans.Livre;
 import com.sdzee.dao.LivreDao;
 import com.sdzee.forms.CreationLivreForm;
 
-
-
 public class CreationLivre extends HttpServlet {
-	
+
 	public static final String ATT_AUTEUR = "livre";
 	public static final String ATT_FORM = "form";
-	public static final String VUE_SUCCES = "/WEB-INF/AfficherLivre.jsp";
 	public static final String VUE_FORM = "/WEB-INF/CreationLivre.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -1,7 +1,6 @@
 package com.sdzee.beans;
 
 
-
 public class Livre {
     /* Propriétés du bean */
     private String issn;

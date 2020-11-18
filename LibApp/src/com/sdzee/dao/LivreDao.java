@@ -12,7 +12,7 @@ public class LivreDao {
 		String insert_livre_statment = "INSERT INTO Livre VALUES(?,?,?,?,?,?)";
 		int result = 0;
 		try {
-			Connection connection = Connection_db.abrirBanco();
+			Connection connection = Connection_db.connectdb();
 			PreparedStatement preparestatement = connection.prepareStatement(insert_livre_statment);
 			preparestatement.setString(1, livre.getIssn());
 			preparestatement.setString(2, livre.getID_auteur());

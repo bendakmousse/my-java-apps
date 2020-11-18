@@ -10,11 +10,10 @@ import com.sdzee.beans.Auteur;
 import com.sdzee.dao.AuteurDao;
 import com.sdzee.forms.CreationAuteurForm;
 
-//@WebServlet("/CreationAuteur")
+
 public class CreationAuteur extends HttpServlet {
 	public static final String ATT_AUTEUR = "auteur";
 	public static final String ATT_FORM = "form";
-	public static final String VUE_SUCCES = "/WEB-INF/AfficherAuteur.jsp";
 	public static final String VUE_FORM = "/WEB-INF/CreationAuteur.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,13 +30,9 @@ public class CreationAuteur extends HttpServlet {
 		 * Appel au traitement et à la validation de la requête, et récupération du bean
 		 * en résultant
 		 */
-		// Auteur autreur_buff= new Auteur();
-		// autreur_buff.setDateNaissance(request.getParameter("dateNaissance"));
-
 		Auteur autreur = form.creerAuteur(request);
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);
-
 		if (form.getErreurs().isEmpty()) {
 			request.setAttribute(ATT_AUTEUR, null);
 			int insert_done = 0;

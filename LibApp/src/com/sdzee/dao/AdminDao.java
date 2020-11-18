@@ -13,7 +13,7 @@ public class AdminDao {
 		
 		String select_admin_statment = "SELECT * FROM Admin WHERE username = ? and password = ?";
 
-		Connection connection = Connection_db.abrirBanco();
+		Connection connection = Connection_db.connectdb();
 		PreparedStatement preparestatement = connection.prepareStatement(select_admin_statment);
 		preparestatement.setString(1, username);
 		preparestatement.setString(2, password);

@@ -1,6 +1,5 @@
 package com.sdzee.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 
@@ -13,7 +12,7 @@ public class AuteurDao {
 		String insert_auteur_statment = "INSERT INTO Auteur VALUES(?,?,?,?)";
 		int result = 0;
 		try {
-			Connection connection = Connection_db.abrirBanco();
+			Connection connection = Connection_db.connectdb();
 			PreparedStatement preparestatement = connection.prepareStatement(insert_auteur_statment);
 			preparestatement.setString(1, auteur.getNum());
 			preparestatement.setString(2, auteur.getNom());

@@ -6,9 +6,7 @@ import java.sql.SQLException;
 
 public class Connection_db {
 
-	// private static Connection cononnection = null;
-
-	public static Connection abrirBanco() {
+	public static Connection connectdb() {
 		Connection cononnection;
 		try {
 			String jdbcURL = "jdbc:mysql://localhost:3306/lib_db";
@@ -17,7 +15,7 @@ public class Connection_db {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			cononnection = DriverManager.getConnection(jdbcURL, dbUser , dbPassword);
-			System.out.println("conneccted wth database");
+			System.out.println("conneccted with database");
 			return cononnection;
 		} catch (ClassNotFoundException cnfe) {
 			System.out.println("no connect " + cnfe.getMessage());
@@ -31,14 +29,6 @@ public class Connection_db {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
-		}
-	}
-
-	public static void closeBDcon() {
-		try {
-			// cononnection.close();
-		} catch (Exception e) {
-			System.out.println("erro ao fechar o banco" + e.getMessage());
 		}
 	}
 

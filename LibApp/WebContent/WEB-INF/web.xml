@@ -9,7 +9,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+  </welcome-file-list> 
 	
 	 <servlet>
 		<servlet-name>adminLogin</servlet-name>
@@ -17,21 +17,50 @@
 	</servlet>
 	
 	<servlet>
+		<servlet-name>adminLogout</servlet-name>
+		<servlet-class>com.sdzee.servlets.AdminLogout</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>com.sdzee.servlets.Search</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>CreationAuteur</servlet-name>
 		<servlet-class>com.sdzee.servlets.CreationAuteur</servlet-class>
 	</servlet>
+	
 	
 	<servlet>
 		<servlet-name>CreationLivre</servlet-name>
 		<servlet-class>com.sdzee.servlets.CreationLivre</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>HomeAdmin</servlet-name>
+		<servlet-class>com.sdzee.servlets.HomeAdmin</servlet-class>
+	</servlet>
+	
+	
 	<servlet-mapping>
 		<servlet-name>adminLogin</servlet-name>
 		<url-pattern>/login_admin</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
 	
+	
+	<servlet-mapping>
+		<servlet-name>adminLogout</servlet-name>
+		<url-pattern>/logout_admin</url-pattern>
+	</servlet-mapping>
+	
+	
+
 	<servlet-mapping>
 		<servlet-name>CreationAuteur</servlet-name>
 		<url-pattern>/CreationAuteur</url-pattern>
@@ -42,4 +71,10 @@
 		<url-pattern>/CreationLivre</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+		<servlet-name>HomeAdmin</servlet-name>
+		<url-pattern>/homeAdmin</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
+

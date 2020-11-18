@@ -2,9 +2,7 @@ package com.sdzee.forms;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import com.sdzee.beans.Auteur;
 
 public class CreationAuteurForm {
@@ -14,6 +12,7 @@ public class CreationAuteurForm {
     private static final String CHAMP_PRENOM         = "prenomAuteur";
     private static final String CHAMP_DATE_NAISSANCE = "dateNaissanceAuteur";
 
+    
     private String              resultat;
     private Map<String, String> erreurs              = new HashMap<String, String>();
 
@@ -61,7 +60,7 @@ public class CreationAuteurForm {
         try {
             validationDateNaissance( dateNaissance );
         } catch ( Exception e ) {
-            setErreur( CHAMP_NOM, e.getMessage() );
+            setErreur( CHAMP_DATE_NAISSANCE, e.getMessage() );
         }
         auteur.setDateNaissance( dateNaissance );
 
@@ -73,8 +72,6 @@ public class CreationAuteurForm {
 
         return auteur;
     }
-
-  
 
     private void validationNom( String nom ) throws Exception {
         if ( nom != null ) {
@@ -126,7 +123,7 @@ public class CreationAuteurForm {
 
     /*
      * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
-     * sinon.
+     * sinon
      */
     private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
         String valeur = request.getParameter( nomChamp );

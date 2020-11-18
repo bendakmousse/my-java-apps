@@ -1,6 +1,5 @@
 package com.sdzee.forms;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -8,7 +7,6 @@ import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sdzee.beans.Livre;
-
 
 public class CreationLivreForm {
     private static final String CHAMP_ISSN     = "issnLivre";
@@ -72,7 +70,7 @@ public class CreationLivreForm {
         }
         livre.setResume( resume );
 
-        int valeurNbPages = -1;
+        int valeurNbPages = 0;
 
         try {
             valeurNbPages = validationNbPages( nbPages );
@@ -120,7 +118,7 @@ public class CreationLivreForm {
     }
     
     private void validationTitre( String titre ) throws Exception {
-        if ( titre != null && titre.length() < 8 ) {
+        if ( titre != null && titre.length() < 2 ) {
             throw new Exception( "Le prénom d'utilisateur doit contenir au moins 2 caractères." );
         }
     }
