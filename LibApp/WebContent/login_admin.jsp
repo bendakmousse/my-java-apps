@@ -3,23 +3,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="login_style.css" />
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
 <body>
-    <div style="text-align: center">
-        <h1>Admin Login</h1>
-        <form action="login_admin" method="post">
-            <label for="username">Username :</label>
-            <input name="username" size="30" />
-            <br><br>
-            <label for="password">Password :</label>
-            <input type="password" name="password" size="30" />
-            <br>${message}
-            <br><br>           
-            <button type="submit">Login</button>
-        </form>
-    </div>
+
+
+	<div class="login">
+		<h1>Admin Login</h1>
+		<form method="post" action="login_admin">
+			<input type="text" name="username" placeholder="Username"
+				required="required" /> <input type="password" name="password"
+				placeholder="Password" required="required" />
+			<pr>${message}</pr>
+			<button type="submit" class="btn btn-primary btn-block btn-large">Login</button>
+		</form>
+	</div>
+
+	<form method="post" action="index.jsp">
+		<fieldset>
+			<input type="submit" value="accueil" class="sansLabel" />
+		</fieldset>
+	</form>
+
 </body>
 </html>

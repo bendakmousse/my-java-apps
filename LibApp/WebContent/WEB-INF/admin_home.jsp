@@ -10,7 +10,7 @@
 <body>
 	<div id="menu">
 		<div style="text-align: right">
-			<b>${admin.fullname} </b> <br> <br> <a href="/logout_admin">Logout</a>
+			<b>${admin.fullname} </b> <br> <br> <a href="index.jsp">Logout</a>
 		</div>
 
 		<p>
@@ -27,7 +27,7 @@
 	<form method="post" action="search">
 		<fieldset>
 			<legend>search</legend>
-			<p>
+			<pr>
 				<input type="text" id="search" name="search" size="20"
 					maxlength="20">
 				</nput>
@@ -36,9 +36,11 @@
 					<option value="livre">Livre</option>
 					<option value="domaine">Domaine</option>
 				</select>
-			</p>
+			</pr>
+			<br>${message}</br>
 			<input type="submit" value="search" class="sansLabel"></input>
 		</fieldset>
+		
 		<input type="hidden" id="whosearch" name="whosearch" value="admin">
 		</nput>
 	</form>

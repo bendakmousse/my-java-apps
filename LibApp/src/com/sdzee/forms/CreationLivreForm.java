@@ -118,9 +118,16 @@ public class CreationLivreForm {
     }
     
     private void validationTitre( String titre ) throws Exception {
-        if ( titre != null && titre.length() < 2 ) {
-            throw new Exception( "Le prénom d'utilisateur doit contenir au moins 2 caractères." );
-        }
+    	
+    	
+    	if (titre != null) {
+
+			if (titre.length() < 2) {
+				throw new Exception("Le titre de livre doit contenir au moins 2 caractères.");
+			}
+		} else {
+			throw new Exception("Merci d'entrer le titre de livre .");
+		}
     }
 
     // this methode should be modified
